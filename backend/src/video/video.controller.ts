@@ -12,7 +12,8 @@ import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 import { ProductService } from '../product/product.service';
 import { Product } from '../product/entities/product.entity';
-import {Video} from "./entities/video.entity";
+import { Video } from './entities/video.entity';
+import { json } from 'express';
 
 @Controller('video')
 export class VideoController {
@@ -39,6 +40,10 @@ export class VideoController {
       newProduct.video = newVideo;
       this.productService.create(newProduct);
     });
+    return {
+      video: newVideo,
+      products: productList,
+    };
   }
   @Post()
   create(@Body() createVideoDto: CreateVideoDto) {
