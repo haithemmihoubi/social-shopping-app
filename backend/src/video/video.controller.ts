@@ -1,12 +1,45 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { VideoService } from './video.service';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
+import { ProductService } from '../product/product.service';
+import { Product } from '../product/entities/product.entity';
+import {Video} from "./entities/video.entity";
 
 @Controller('video')
 export class VideoController {
-  constructor(private readonly videoService: VideoService) {}
+  constructor(
+    private readonly videoService: VideoService,
+    private readonly productService: ProductService,
+  ) {}
 
+  @Post('upload')
+  async createSocial(@Body() data: any) {
+    const videoEntity = new Video();
+    videoEntity.videoLink = data.videoLink;
+    const newVideo = await this.videoService.create(videoEntity);
+
+    const productList = data.products as Product[];
+    productList.forEach((product) => {
+      const newProduct = new Product();
+      newProduct.image = product.image;
+      newProduct.productName = product.productName;
+      newProduct.productLink = product.productLink;
+      newProduct.mark = product.mark;
+      newProduct.hashtag = product.hashtag;
+      newProduct.label = product.label;
+      newProduct.video = newVideo;
+      this.productService.create(newProduct);
+    });
+  }
   @Post()
   create(@Body() createVideoDto: CreateVideoDto) {
     return this.videoService.create(createVideoDto);
