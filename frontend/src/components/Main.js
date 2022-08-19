@@ -4,7 +4,7 @@ import Products from './Products';
 export default function Main () {
   return (
     <main>
-      <div className="h-screen w-screen grid" style={gridStyles}>
+      <div className="h-screen w-screen flex bg-black" style={gridStyles}>
         <Video />
         <Products />
       </div>
@@ -13,6 +13,6 @@ export default function Main () {
 }
 
 const gridStyles = {
-  gridTemplateColumns: '44.72% 1fr',
+  gridTemplateColumns: 'max-content 1fr',
   gridTemplateRows: '9.625rem 1fr 9.3125rem'
 }
