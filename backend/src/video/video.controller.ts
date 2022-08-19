@@ -14,7 +14,8 @@ import { ProductService } from '../product/product.service';
 import { Product } from '../product/entities/product.entity';
 import { Video } from './entities/video.entity';
 import { json } from 'express';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('video')
 @Controller('video')
 export class VideoController {
   constructor(
