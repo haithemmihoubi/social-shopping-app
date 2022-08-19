@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/screens/add_video_Screen.dart';
-
+import 'package:lottie/lottie.dart';
 class VideoScreen extends StatelessWidget {
   const VideoScreen({Key? key}) : super(key: key);
 

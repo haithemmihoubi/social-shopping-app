@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/screens/add_product.dart';
-
+import 'package:lottie/lottie.dart';
 class AddVideoScreen extends StatelessWidget {
   const AddVideoScreen({Key? key}) : super(key: key);
 
@@ -18,8 +18,8 @@ class AddVideoScreen extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Image.asset(
-                  "assets/images/video.png",
+                Lottie.asset(
+                  "assets/videolottie.json",
                   width: 300,
                 ),
                 const Text(

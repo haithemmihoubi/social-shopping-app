@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/screens/product_add_form.dart';
+import 'package:lottie/lottie.dart';
 class AddProduct extends StatelessWidget {
   const AddProduct({Key? key}) : super(key: key);
 
