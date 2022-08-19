@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/screens/description_screen.dart';
 import 'package:my_app/screens/product_add_form.dart';
 import 'package:lottie/lottie.dart';
 class AddProduct extends StatelessWidget {
@@ -176,7 +177,18 @@ class AddProduct extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(
+                    const DescriptionScreen(),
+                    arguments: {
+                      'title': 'product Add Form',
+                    },
+                    transition: Transition.zoom,
+                    curve: Curves.bounceInOut,
+                    duration:
+                    const Duration(milliseconds: 500),
+                  );
+                },
                 child: const Text('suivant'),
               ),
             )
