@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/screens/add_video_Screen.dart';
 import 'package:lottie/lottie.dart';
+
 class VideoScreen extends StatelessWidget {
   const VideoScreen({Key? key}) : super(key: key);
 
@@ -28,36 +29,37 @@ class VideoScreen extends StatelessWidget {
           ),
         ),
         Padding(
-            padding: const EdgeInsets.only(top: 700, left: 120, right: 75,bottom: 10),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 6,
-                  padding: const EdgeInsets.fromLTRB(25, 15, 0, 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+            padding: const EdgeInsets.only(
+                top: 700, left: 70, right: 70 ,bottom: 10),
+            child: Expanded(
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 6,
+                    padding: const EdgeInsets.fromLTRB(25, 15, 0, 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                ),
-                onPressed: () => {
-                      Get.to(
-                        const AddVideoScreen(),
-                        arguments: {
-                          'title': 'Add Video',
-                        },
-                        transition: Transition.rightToLeftWithFade,
-                        curve: Curves.easeInOut,
-                        duration: const Duration(milliseconds: 500),
-
-                      )
-                    },
-                child: Row(children: const [
-                  Text("créer vidéo",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Icon(Icons.arrow_right_alt_outlined)
-                ]))),
+                  onPressed: () => {
+                        Get.to(
+                          const AddVideoScreen(),
+                          arguments: {
+                            'title': 'Add Video',
+                          },
+                          transition: Transition.rightToLeftWithFade,
+                          curve: Curves.easeInOut,
+                          duration: const Duration(milliseconds: 500),
+                        )
+                      },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                    Text("créer vidéo",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20)),
+                    Icon(Icons.arrow_right_alt_outlined)
+                  ])),
+            )),
       ],
     )));
   }

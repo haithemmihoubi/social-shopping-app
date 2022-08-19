@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/screens/add_product.dart';
 import 'package:lottie/lottie.dart';
+
 class AddVideoScreen extends StatelessWidget {
   const AddVideoScreen({Key? key}) : super(key: key);
 
@@ -33,14 +34,48 @@ class AddVideoScreen extends StatelessWidget {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.only(top: 670, left: 55, right: 10,bottom: 50),
+              padding: const EdgeInsets.only(
+                  top: 670, left: 15, right: 15, bottom: 50),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
+                  Expanded(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          elevation: 0,
+                          animationDuration: const Duration(milliseconds: 500),
+                          padding: const EdgeInsets.fromLTRB(30, 12, 30, 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () => {
+                              Get.to(
+                                const AddProduct(),
+                                arguments: {
+                                  'title': 'Add Video',
+                                },
+                                transition: Transition.rightToLeftWithFade,
+                                curve: Curves.easeInOut,
+                                duration: const Duration(milliseconds: 500),
+                              )
+                            },
+                        child: const Text("Galerie",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color: Colors.black))),
+                  ),
+                  const SizedBox(
+                    width: 60,
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        animationDuration: const Duration(milliseconds: 500),
-                        padding: const EdgeInsets.fromLTRB(30, 14, 30, 14),
+                        primary: Colors.white,
+                        elevation: 6,
+                        padding: const EdgeInsets.fromLTRB(30, 12, 30, 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -54,40 +89,16 @@ class AddVideoScreen extends StatelessWidget {
                           transition: Transition.rightToLeftWithFade,
                           curve: Curves.easeInOut,
                           duration: const Duration(milliseconds: 500),
-
                         )
                       },
-                      child: const Text("Galerie",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20))),
-                  const SizedBox(
-                    width: 60,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 6,
-                      padding: const EdgeInsets.fromLTRB(30, 14, 30, 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      clipBehavior: Clip.antiAlias,
+                      child: const Text(
+                        "caméra",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: Colors.black),
                       ),
-                    ),
-                    onPressed: () => {
-                      Get.to(
-                        const AddProduct(),
-                        arguments: {
-                          'title': 'Add Video',
-                        },
-                        transition: Transition.rightToLeftWithFade,
-                        curve: Curves.easeInOut,
-                        duration: const Duration(milliseconds: 500),
-
-                      )
-                    },
-                    clipBehavior: Clip.antiAlias,
-                    child: const Text(
-                      "caméra",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                 ],

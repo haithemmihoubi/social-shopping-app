@@ -231,31 +231,34 @@ class AddProduct extends StatelessWidget {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 6,
-                      padding: const EdgeInsets.fromLTRB(30, 14, 30, 14),
+                      padding: const EdgeInsets.fromLTRB(25, 15, 0, 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                     onPressed: () => {
-                          Get.to(
-                            const ProductAddForm(),
-                            arguments: {
-                              'title': 'product Add Form',
-                            },
-                            transition: Transition.zoom,
-                            curve: Curves.easeInOut,
-                            duration: const Duration(milliseconds: 500),
-                          )
+                      Get.to(
+                        const ProductAddForm(),
+                        arguments: {
+                          'title': 'Add Video',
                         },
-                    child: Row(children: const [
-                      Icon(Icons.add_to_photos),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text("Ajouter Produit",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20)),
-                    ]))),
+                        transition: Transition.rightToLeftWithFade,
+                        curve: Curves.easeInOut,
+                        duration: const Duration(milliseconds: 500),
+                      )
+                    },
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Icon(Icons.add, color: Colors.white),
+                          Text("Ajouter Produit",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 20)),
+
+                        ])),
+
+
+            ),
           ],
         )));
   }
