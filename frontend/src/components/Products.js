@@ -4,7 +4,7 @@ export default function Products() {
 
   return (
     <>
-      <div className="bg-yellow-500">
+      <div className="bg-yellow-500 flex justify-end items-end">
         <h2>LISTE DE PRODUITS</h2>
       </div>
       <ProductsList />
