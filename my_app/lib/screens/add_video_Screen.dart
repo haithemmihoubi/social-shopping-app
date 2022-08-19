@@ -33,7 +33,7 @@ class AddVideoScreen extends StatelessWidget {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.only(top: 720, left: 55, right: 10,bottom: 10),
+              padding: const EdgeInsets.only(top: 670, left: 55, right: 10,bottom: 50),
               child: Row(
                 children: [
                   ElevatedButton(
