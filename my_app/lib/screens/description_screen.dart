@@ -117,7 +117,7 @@ class DescriptionScreen extends StatelessWidget {
                 },
                 child: Center(
                   child: Row(children: const [
-                    Icon(Icons.add_to_photos),
+                    Icon(Icons.share),
                     SizedBox(
                       width: 30,
                     ),
