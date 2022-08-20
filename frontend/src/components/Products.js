@@ -38,7 +38,7 @@ export default function Products() {
       </div>
       <ProductsList />
       <div
-        className="flex justify-evenly items-start"
+        className="flex justify-end gap-10 pr-12 items-start"
         style={{
           height: '9.3125rem'
         }}>

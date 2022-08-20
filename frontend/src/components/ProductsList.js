@@ -17,7 +17,7 @@ export default function ProductsList() {
       dispatch(addFinishPosition(5))
     } else if (window.innerHeight > 1000) {
       dispatch(addFinishPosition(4));
-    } else if (window.innerHeight > 800){
+    } else if (window.innerHeight > 700){
       dispatch(addFinishPosition(3));
     } else if (window.innerHeight > 610) {
       dispatch(addFinishPosition(2));
