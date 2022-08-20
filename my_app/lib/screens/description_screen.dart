@@ -121,7 +121,7 @@ class DescriptionScreen extends StatelessWidget {
                     SizedBox(
                       width: 30,
                     ),
-                    Text("Ajouter Produit",
+                    Text("Publier",
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 20)),
