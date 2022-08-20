@@ -227,7 +227,7 @@ class AddProduct extends StatelessWidget {
             ),
             Padding(
                 padding: const EdgeInsets.only(
-                    top: 650, left: 95, right: 70, bottom: 10),
+                    top: 650, left: 70, right: 70, bottom: 10),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 6,
@@ -248,9 +248,10 @@ class AddProduct extends StatelessWidget {
                       )
                     },
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                          Icon(Icons.add, color: Colors.white),
+                          Icon(Icons.add_to_photos, color: Colors.white),
+                          SizedBox(width: 10),
                           Text("Ajouter Produit",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 20)),
