@@ -15,8 +15,8 @@ export default function Video() {
       }}
       transition={{
         type: 'spring',
-        stiffness: 80,
-        duration: 0.7
+        stiffness: 30,
+        duration: 0.3
       }}
       className="player-wrapper self-start justify-self-start "
       style={{

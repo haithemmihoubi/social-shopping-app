@@ -1,6 +1,8 @@
 import ProductsList from './ProductsList';
 import ProductsFooter from './ProductsFooter';
 
+import { motion } from 'framer-motion';
+
 export default function Products() {
 
   return (
@@ -13,7 +15,26 @@ export default function Products() {
         style={{
           height: '9.625rem'
         }}>
-        <h2 className='text-white text-2xl underline tracking-wider font decoration-white decoration-from-font underline-offset-3 cursor-default select-none'>LISTE DE PRODUITS</h2>
+        <motion.h2
+          className='text-white text-2xl underline tracking-wider font decoration-white decoration-from-font underline-offset-3 cursor-default select-none'
+          initial={{
+            scale: 0,
+            opacity: 0,
+            y: -10
+          }}
+          animate={{
+            scale: 1,
+            opacity: 1,
+            y: 0
+          }}
+          transition={{
+            type: 'spring',
+            duration: .6,
+            delay: .3
+          }}
+          >
+          LISTE DE PRODUITS
+        </motion.h2>
       </div>
       <ProductsList />
       <div
