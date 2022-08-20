@@ -5,6 +5,7 @@ export default function Product({ n, delay }) {
   return (
     <AnimatePresence>
       <motion.div
+        layout
         initial={{
           opacity: 0,
           x: 1000
@@ -33,26 +34,36 @@ export default function Product({ n, delay }) {
         }}>
 
         <div className='h-full p-4'>
-          <div className='rounded-2xl text-black bg-white aspect-square w-full flex justify-center items-center'>
+          <motion.div 
+          className='rounded-2xl text-black bg-white aspect-square w-full flex justify-center items-center'
+          whileHover={{
+            scale: 1.1
+          }}
+          >
             <img alt='product' src='#' />
-          </div>
+          </motion.div>
         </div>
         <div className='h-full flex flex-col justify-center p-4'>
-          <h3 className='font-bold pb-4'>Product name</h3>
+          <h3 className='font-bold pb-4'>Product {n}</h3>
           <p className='text-sm '>Product description description description</p>
         </div>
         <div className='h-full flex justify-center items-center'>
           <motion.button
-          className='rounded-md py-1 px-10'
+          className='rounded-md px-14'
           style={{
             background: '#F5C8C6',
-            color: '#BC5B6C'
+            color: '#BC5B6C',
+            paddingBlock: '.1rem'
           }}
           whileHover={{
             scale: 1.05
           }}
           whileTap={{
             scale: .95
+          }}
+          drag
+          dragConstraints={{
+            top:0,bottom:0,left:0,right:0
           }}
           >
             Voir Produit
