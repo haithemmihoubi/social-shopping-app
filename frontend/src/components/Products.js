@@ -1,8 +1,6 @@
 import ProductsList from './ProductsList';
 import ProductsFooter from './ProductsFooter';
 
-import { motion } from 'framer-motion';
-
 export default function Products() {
 
   return (
