@@ -14,19 +14,25 @@ class VideoScreen extends StatelessWidget {
         body: SafeArea(
             child: Stack(
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: ExactAssetImage('assets/images/original.jpg'),
-              fit: BoxFit.cover,
+        Expanded(
+
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: ExactAssetImage('assets/images/original.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.black.withOpacity(0.3)),
+              ),
             ),
           ),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-            child: Container(
-              decoration: BoxDecoration(color: Colors.black.withOpacity(0.3)),
-            ),
-          ),
+        ),
+        SizedBox(
+          height: Get.height * 0.2,
         ),
         Padding(
             padding: const EdgeInsets.only(
