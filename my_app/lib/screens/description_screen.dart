@@ -117,11 +117,11 @@ class DescriptionScreen extends StatelessWidget {
                 },
                 child: Center(
                   child: Row(children: const [
-                    Icon(Icons.add_to_photos),
+                    Icon(Icons.share),
                     SizedBox(
                       width: 30,
                     ),
-                    Text("Ajouter Produit",
+                    Text("Publier",
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 20)),
