@@ -11,7 +11,7 @@ export default function Products() {
       flexBasis: 'auto',
       flexGrow: 1,
     }}>
-      <div className="flex justify-end items-end pr-8"
+      <div className="flex justify-end items-end pr-8 mb-4"
         style={{
           height: '9.625rem'
         }}>
@@ -38,7 +38,7 @@ export default function Products() {
       </div>
       <ProductsList />
       <div
-        className="flex justify-end gap-10 pr-12 items-start"
+        className="flex justify-end gap-10 pr-32 items-start mt-8"
         style={{
           height: '9.3125rem'
         }}>

@@ -1,41 +1,10 @@
-import { useDispatch } from "react-redux";
-import { slideDown, slideUp } from "./ProductsSlice";
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProductsFooter() {
 
-  const dispatch = useDispatch();
-
   return (
     <>
-      <AnimatedButton onClick={() => dispatch(slideUp())}>
-        <AnimatePresence>
-          <motion.div
-            className='arrow-up rounded-full w-16 aspect-square shadow-xl p-3'
-            style={background}
-            initial={{
-              scale: 0,
-              y: 200,
-            }}
-            animate={{
-              scale: 1,
-              y: 0,
-              rotate: 360
-            }}
-            transition={{
-              type: 'spring',
-              duration: 1.2,
-              delay: 1.3
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className='w-full' fill="white" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
-              <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
-            </svg>
-          </motion.div>
-        </AnimatePresence>
-      </AnimatedButton>
-      <AnimatedButton onClick={() => dispatch(slideDown())}>
+      <AnimatedButton onClick={() => {}}>
         <AnimatePresence>
           <motion.div
             className='arrow-down rounded-full w-16 aspect-square shadow-xl p-3'
