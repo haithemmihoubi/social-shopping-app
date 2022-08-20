@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_camera/flutter_camera.dart';
 import 'package:get/get.dart';
 import 'package:my_app/screens/add_product.dart';
 import 'package:lottie/lottie.dart';
@@ -82,7 +83,7 @@ class AddVideoScreen extends StatelessWidget {
                       ),
                       onPressed: () => {
                         Get.to(
-                          const AddProduct(),
+                          FlutterCamera(color: Colors.blueAccent,),
                           arguments: {
                             'title': 'Add Video',
                           },
