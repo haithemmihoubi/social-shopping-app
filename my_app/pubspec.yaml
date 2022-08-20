@@ -37,6 +37,13 @@ dependencies:
   get: ^4.6.5
   lottie: ^1.4.1
   flutter_camera: ^0.1.1
+  file_picker: ^5.0.1
+  get_storage:
+  firebase_storage: ^10.3.6
+  firebase_core: ^1.21.0
+  cloud_firestore: ^3.4.5
+  path_provider: ^2.0.11
+
 
 dev_dependencies:
   flutter_test:

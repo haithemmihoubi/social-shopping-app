@@ -1,16 +1,27 @@
+import 'dart:io';
 import 'dart:ui';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_camera/flutter_camera.dart';
 import 'package:get/get.dart';
-import 'package:my_app/screens/add_product.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_app/screens/video_screen.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AddVideoScreen extends StatelessWidget {
-  const AddVideoScreen({Key? key}) : super(key: key);
+  var appDocDir;
 
   @override
   Widget build(BuildContext context) {
+    FilePickerResult? result;
+    File? file;
+    PlatformFile? pickedFile;
+
+    var storageRef, fileName;
+    var videoRef, videFileRef, snapshot, urlDownload;
+    String filePath;
     return Scaffold(
         body: SafeArea(
             child: Container(
@@ -51,16 +62,36 @@ class AddVideoScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        onPressed: () => {
-                              Get.to(
-                                const AddProduct(),
-                                arguments: {
-                                  'title': 'Add Video',
-                                },
-                                transition: Transition.rightToLeftWithFade,
-                                curve: Curves.easeInOut,
-                                duration: const Duration(milliseconds: 500),
-                              )
+                        onPressed: () async => {
+                              result = await FilePicker.platform.pickFiles(),
+                              pickedFile = result?.files.first,
+                              file = File(pickedFile!.path!),
+// Create a storage reference from our app
+                              storageRef = FirebaseStorage.instance
+                                  .ref()
+                                  .child('videos/${pickedFile!.name}'),
+                              videoRef = storageRef.putFile(file),
+                              snapshot = await videoRef.whenComplete(() {}),
+                              urlDownload = await snapshot.ref.getDownloadURL(),
+                              print("url $urlDownload"),
+                              if (result == null)
+                                {
+                                  Get.snackbar(
+                                    "Erreur",
+                                    "Vous n'avez pas sélectionné de vidéo",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    borderRadius: 10,
+                                    margin: const EdgeInsets.all(10),
+                                    borderColor: Colors.red,
+                                    borderWidth: 2,
+                                    colorText: Colors.white,
+                                    animationDuration:
+                                        const Duration(milliseconds: 500),
+                                    duration:
+                                        const Duration(milliseconds: 2000),
+                                  )
+                                }
                             },
                         child: const Text("Galerie",
                             style: TextStyle(
@@ -83,7 +114,34 @@ class AddVideoScreen extends StatelessWidget {
                       ),
                       onPressed: () => {
                         Get.to(
-                          FlutterCamera(color: Colors.blueAccent,),
+                          FlutterCamera(
+                              color: Colors.blueAccent,
+                              onVideoRecorded: (f) async {
+                                file = File(f.path);
+                                 fileName=f.path.substring(f.path.lastIndexOf("/")+1,f.path.length);
+                                storageRef = FirebaseStorage.instance
+                                    .ref()
+                                    .child('videos/$fileName');
+                                videoRef = storageRef.putFile(file);
+                                snapshot = await videoRef.whenComplete(() {});
+                                urlDownload =
+                                    await snapshot.ref.getDownloadURL();
+                                print("url $urlDownload");
+                                print("url $fileName");
+                              },
+                              onImageCaptured: (f) async {
+                                file = File(f.path);
+                                fileName=f.path.substring(f.path.lastIndexOf("/")+1,f.path.length);
+                                storageRef = FirebaseStorage.instance
+                                    .ref()
+                                    .child('videos/$fileName');
+                                videoRef = storageRef.putFile(file);
+                                snapshot = await videoRef.whenComplete(() {});
+                                urlDownload =
+                                await snapshot.ref.getDownloadURL();
+                                print("url $urlDownload");
+                                print("url $fileName");
+                              }),
                           arguments: {
                             'title': 'Add Video',
                           },
