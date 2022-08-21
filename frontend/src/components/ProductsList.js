@@ -8,7 +8,6 @@ export default function ProductsList() {
   const [productList] = useState([<Product n="1" delay="0.4" />, <Product n="2" delay=".7" />, <Product n="3" delay="1" />, <Product n="4" delay="1.3" />, <Product n="5" delay="1.6" />, <Product n="6" delay="1.9" />, <Product n="7" delay="2.2" />])
   const [height, setHeight] = useState();
   const carousel = useRef();
-  const sliderWrapper = document.querySelector('.sliderWrapper');
 
   useEffect(() => {
     setHeight(carousel.current.scrollHeight - carousel.current.offsetHeight);
