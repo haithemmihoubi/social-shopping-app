@@ -5,11 +5,18 @@ import 'package:get/get.dart';
 import 'package:my_app/screens/description_screen.dart';
 import 'package:my_app/screens/product_add_form.dart';
 import 'package:lottie/lottie.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:video_player/video_player.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 class AddProduct extends StatelessWidget {
   const AddProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final String? videoLink = Get.arguments['videoLink'];
+
+
     ScrollController scrollController = ScrollController();
     List<Widget> listProducts = [
       Card(
@@ -34,9 +41,8 @@ class AddProduct extends StatelessWidget {
                 elevation: 2,
                 borderOnForeground: true,
                 child: Image.asset(
-                  "assets/images/lipstick.png",
-                  width: 80,
-                  height: 100,
+                  'assets/images/video.png',
+                  fit: BoxFit.cover,
                 ),
 
               ))),
@@ -199,11 +205,10 @@ class AddProduct extends StatelessWidget {
             child: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: ExactAssetImage('assets/images/makeup.jpg'),
-                  fit: BoxFit.cover,
-                ),
+
+              child: Image.asset(
+                'assets/images/makeup.jpg',
+                fit: BoxFit.fill,
               ),
             ),
             Positioned(
@@ -238,7 +243,7 @@ class AddProduct extends StatelessWidget {
                     ),
                     onPressed: () => {
                       Get.to(
-                        const ProductAddForm(),
+                         ProductAddForm(),
                         arguments: {
                           'title': 'Add Video',
                         },
@@ -249,10 +254,10 @@ class AddProduct extends StatelessWidget {
                     },
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children:  [
                           Icon(Icons.add_to_photos, color: Colors.white),
                           SizedBox(width: 10),
-                          Text("Ajouter Produit",
+                          Text("Ajouter Produit ",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 20)),
 
