@@ -37,7 +37,8 @@ export default function Product({ n, delay }) {
           <motion.div 
           className='rounded-2xl text-black bg-white aspect-square w-full flex justify-center items-center'
           whileHover={{
-            scale: 1.1
+            scale: 1.1,
+            cursor: 'default'
           }}
           >
             <img alt='product' src='#' />
@@ -60,10 +61,6 @@ export default function Product({ n, delay }) {
           }}
           whileTap={{
             scale: .95
-          }}
-          drag
-          dragConstraints={{
-            top:0,bottom:0,left:0,right:0
           }}
           >
             Voir Produit
