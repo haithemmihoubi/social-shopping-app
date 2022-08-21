@@ -1,14 +1,17 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:get_storage/get_storage.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DescriptionScreen extends StatelessWidget {
   const DescriptionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController? legendxController = TextEditingController();
+    TextEditingController? hashtagController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -26,105 +29,107 @@ class DescriptionScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            width: double.infinity,
-            height: Get.height * 0.3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Container(
-
-                    width: Get.width * 0.4,
-                    height: Get.height * 0.3,
-                    child: Card(
-                        margin: const EdgeInsets.all(8),
-                        elevation: 20,
-                        borderOnForeground: true,
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          side: const BorderSide(
-                            color: Colors.white24,
-                            width: 4,
-                            style: BorderStyle.solid,
+              width: double.infinity,
+              height: Get.height * 0.3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: Get.width * 0.4,
+                      height: Get.height * 0.3,
+                      child: Card(
+                          margin: const EdgeInsets.all(8),
+                          elevation: 20,
+                          borderOnForeground: true,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: const BorderSide(
+                              color: Colors.white24,
+                              width: 4,
+                              style: BorderStyle.solid,
+                            ),
                           ),
-                        ),
-                        shadowColor: Colors.white12,
-                        child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Card(
-                              color: Colors.white,
-                              shadowColor: Colors.white,
-                              elevation: 2,
-                              borderOnForeground: true,
-                              child: Image.asset(
-                                "assets/images/lipstick.png",
-                                width: 80,
-                                height: 100,
+                          shadowColor: Colors.white12,
+                          child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Card(
+                                color: Colors.white,
+                                shadowColor: Colors.white,
+                                elevation: 2,
+                                borderOnForeground: true,
+                                child: Image.asset(
+                                  "assets/images/lipstick.png",
+                                  width: 80,
+                                  height: 100,
+                                ),
+                              ))),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                        width: Get.width * 0.5,
+                        height: Get.height * 0.33,
+                        padding: const EdgeInsets.all(10),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextFormField(
+                                controller: legendxController,
+                                decoration: const InputDecoration(
+                                  labelText: 'Legénde',
+                                  hintText: 'Decrivez votre post',
+                                ),
                               ),
-
-                            ))),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: Get.width * 0.5,
-                    height: Get.height * 0.33,
-                      padding: const EdgeInsets.all(10),
-                    child: Form(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextFormField(
-
-                            decoration: const InputDecoration(
-                              labelText: 'Legénde',
-                              hintText: 'Decrivez votre post',
-
-                            ),
+                              const SizedBox(height: 10),
+                              TextFormField(
+                                controller: hashtagController,
+                                decoration: const InputDecoration(
+                                  labelText: 'Hashtag',
+                                  hintText: 'hashtag',
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                            ],
                           ),
-                          const SizedBox(height: 10),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'Hashtag',
-                              hintText: 'hashtag',
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-
-                        ],
-                      ),
-                    )
-                  ),
-                )
-
-              ],
-            )
-          ),
+                        )),
+                  )
+                ],
+              )),
           SizedBox(height: Get.height * 0.1),
           Container(
-            width: Get.width*0.8,
+            width: Get.width * 0.8,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 2,
-                  padding:
-                  const EdgeInsets.fromLTRB(60, 14, 14, 14),
+                  padding: const EdgeInsets.fromLTRB(60, 14, 14, 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 onPressed: () => {
-                },
+                      if (_formKey.currentState!.validate())
+                        {
+                          GetStorage().write("legend", legendxController?.text),
+                          GetStorage().write("hashtag", hashtagController.text),
+                        },
+                      print(GetStorage().getValues()),
+                      Share.share('check out my website https://example.com'),
+                    },
                 child: Center(
                   child: Row(children: const [
                     Icon(Icons.share),
                     SizedBox(
                       width: 30,
                     ),
-                    Text("Publier",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20)),
+                    Text(
+                      "Publier",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                    ),
                   ]),
                 )),
           )

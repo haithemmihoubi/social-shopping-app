@@ -45,7 +45,7 @@ class AddVideoScreen extends StatelessWidget {
               ),
               onPressed: () => {
                 Get.to(
-                  const AddProduct(),
+                      ()=>   const AddProduct(),
                   arguments: {
                     'videoLink': urlDownload,
                   },
@@ -156,7 +156,7 @@ class AddVideoScreen extends StatelessWidget {
                           ),
                           onPressed: () => {
                             Get.to(
-                              FlutterCamera(
+                                  ()=> FlutterCamera(
                                   color: Colors.blueAccent,
                                   onVideoRecorded: (f) async {
                                     file = File(f.path);

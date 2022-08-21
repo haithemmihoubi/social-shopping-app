@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_app/screens/add_product.dart';
 
 class ProductAddForm extends StatelessWidget {
   TextEditingController? marqueController = TextEditingController();
@@ -15,14 +17,17 @@ class ProductAddForm extends StatelessWidget {
 
   var result;
 
-  var pickedFile;
 
-  var logoBase64;
 
   @override
   Widget build(BuildContext context) {
-    ImagePicker _picker;
-    XFile? image;
+    FilePickerResult? result;
+    File? file;
+    PlatformFile? pickedFile;
+    var storageRef, fileName;
+    var videoRef;
+    var videFileRef, snapshot, urlDownload;
+    String filePath;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -113,7 +118,8 @@ class ProductAddForm extends StatelessWidget {
                                                 "link", linkController?.text),
                                             print(
                                               GetStorage().getValues(),
-                                            )
+                                            ),
+                                             Get.to(()=> const AddProduct())
                                           }
                                         /*Get.to(
                                            ProductAddForm(),
@@ -148,10 +154,22 @@ class ProductAddForm extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async => {
-                    _picker = ImagePicker(),
-          // Pick an image
-            image = await _picker.pickImage(source: ImageSource.gallery),
-        image = Image.file(File(image!.path)) as XFile?,
+                  result =
+                  await FilePicker.platform.pickFiles(),
+                  pickedFile = result?.files.first,
+                  file = File(pickedFile!.path!),
+// Create a storage reference from our app
+                  storageRef = FirebaseStorage.instance
+                      .ref()
+                      .child('images/${pickedFile!.name}'),
+                  videoRef = storageRef.putFile(file),
+                  snapshot = await videoRef.whenComplete(() {}),
+                  urlDownload =
+                  await snapshot.ref.getDownloadURL(),
+                  print("url $urlDownload"),
+                  await GetStorage()
+                      .write("imageLink", urlDownload),
+
                 },
                 child: Container(
                   width: Get.width * 0.55,
@@ -179,7 +197,8 @@ class ProductAddForm extends StatelessWidget {
                             elevation: 2,
                             borderOnForeground: true,
                             child: Center(
-                                child: Text('No image selected.')),
+                              child: Text('No image selected.'),
+                            ),
                             /*logoBase64==null? Image.asset(
                               "assets/images/lipstick.png",
                               width: 80,

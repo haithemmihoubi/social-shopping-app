@@ -14,7 +14,7 @@ class AddProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final String? videoLink = Get.arguments['videoLink'];
+   // final String? videoLink = Get.arguments['videoLink'];
 
 
     ScrollController scrollController = ScrollController();
@@ -41,7 +41,7 @@ class AddProduct extends StatelessWidget {
                 elevation: 2,
                 borderOnForeground: true,
                 child: Image.asset(
-                  'assets/images/video.png',
+                  'assets/images/lipstick.png',
                   fit: BoxFit.cover,
                 ),
 
@@ -185,7 +185,7 @@ class AddProduct extends StatelessWidget {
                 ),
                 onPressed: () {
                   Get.to(
-                    const DescriptionScreen(),
+                        ()=>  const DescriptionScreen(),
                     arguments: {
                       'title': 'product Add Form',
                     },
@@ -243,7 +243,7 @@ class AddProduct extends StatelessWidget {
                     ),
                     onPressed: () => {
                       Get.to(
-                         ProductAddForm(),
+                            ()=> ProductAddForm(),
                         arguments: {
                           'title': 'Add Video',
                         },
@@ -254,7 +254,7 @@ class AddProduct extends StatelessWidget {
                     },
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children:  [
+                        children:  const [
                           Icon(Icons.add_to_photos, color: Colors.white),
                           SizedBox(width: 10),
                           Text("Ajouter Produit ",
