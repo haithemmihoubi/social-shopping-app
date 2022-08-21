@@ -1,4 +1,4 @@
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 import { motion } from 'framer-motion';
 
 export default function Video() {
@@ -26,11 +26,14 @@ export default function Video() {
       }}>
       <ReactPlayer
         className="react-player"
-        url="https://firebasestorage.googleapis.com/v0/b/social-d7fb2.appspot.com/o/videos%2FScreen_Recording_20220820-005309.mp4?alt=media&token=036bb569-4780-4b4a-95dc-53d1089f2556"
+        url="a"
         height='100vh'
         width='auto'
         pip={false}
         controls
+        style={{
+          background: 'grey'
+        }}
       >
         
       </ReactPlayer>
