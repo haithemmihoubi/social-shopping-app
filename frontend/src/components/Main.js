@@ -1,18 +1,17 @@
 import Video from './Video';
 import Products from './Products';
 
-export default function Main () {
+export default function Main() {
   return (
     <main>
-      <div className="h-screen w-screen grid" style={gridStyles}>
+      <div
+        className="h-screen w-screen flex bg-black overflow-hidden"
+        style={{
+          background: 'linear-gradient(90deg, rgba(255,37,51,1) 0%, rgba(255,54,129,1) 100%)'
+        }}>
         <Video />
         <Products />
       </div>
     </main>
   );
-}
-
-const gridStyles = {
-  gridTemplateColumns: '44.72% 1fr',
-  gridTemplateRows: '9.625rem 1fr 9.3125rem'
 }
