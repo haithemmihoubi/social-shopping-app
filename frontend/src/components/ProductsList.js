@@ -11,7 +11,7 @@ export default function ProductsList() {
 
   useEffect(() => {
     setHeight(carousel.current.scrollHeight - carousel.current.offsetHeight);
-  }, [])
+  }, []);
 
   return (
     <motion.div
@@ -36,11 +36,12 @@ export default function ProductsList() {
         whileDrag={{
           cursor: 'grabbing'
         }}
-        className=" flex flex-col items-end justify-center gap-6"
+        className="sliderWrapper flex flex-col items-end justify-center gap-6"
         style={{
           cursor: 'grab'
         }}
       >
+
         {productList.map(item => item)}
       </motion.div>
     </motion.div>
