@@ -32,7 +32,10 @@ export default function Video() {
       }}
 
     >
-      <div onClick={() => { if (!playDisplay) { setPlayDisplay(true); setPlay(false) } }}>
+      <div onClick={() => { 
+        play ? setPlay(false) : setPlay(true);
+        playDisplay ? setPlayDisplay(false) : setPlayDisplay(true);
+       }}>
         <ReactPlayer
           playing={play}
           volume={volume}
@@ -65,7 +68,7 @@ export default function Video() {
               <motion.button initial={{}} layout className='rounded-full' onClick={() => { play ? setPlay(false) : setPlay(true); setPlayDisplay(false) }}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="aspect-block w-32" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
                   <motion.path initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1, transition: { delay: .1, duration: .5 } }} exit={{ pathLength: 0, opacity: 0, transition: { delay: 0.1 } }} stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                  <motion.path initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1, transition: { delay: .1, duration: .5 } }} exit={{ pathLength: 0, opacity: 0, transition: { delay: 0.1 } }} stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <motion.path initial={{ pathLength: 0, opacity: 0, rotate: 80 }} animate={{ pathLength: .9, opacity: 1, transition: { delay: .1, duration: .5 } }} exit={{ pathLength: 0, opacity: 0, transition: { delay: 0.1 } }} stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </motion.button>
             }
