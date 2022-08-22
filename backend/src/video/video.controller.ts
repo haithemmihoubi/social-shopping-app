@@ -42,10 +42,11 @@ export class VideoController {
       this.productService.create(newProduct);
     });
     return {
-      video: newVideo,
+      video: newVideo.videoLink,
       products: productList,
     };
   }
+
   @Post()
   create(@Body() createVideoDto: CreateVideoDto) {
     return this.videoService.create(createVideoDto);

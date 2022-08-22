@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,31 @@ import 'package:get_storage/get_storage.dart';
 import 'package:share_plus/share_plus.dart';
 
 class DescriptionScreen extends StatelessWidget {
-  const DescriptionScreen({Key? key}) : super(key: key);
+  Dio dio = Dio();
+
+  Future postData() async {
+    final response = await dio.post(
+        'https://shop-production-3194.up.railway.app/video/upload',
+        data: {
+          'videoLink': "flutter",
+          'products': [
+            {
+              "image": "flutter",
+              "productName": "flutter",
+              "productLink": "string",
+              "mark": "string",
+              "hashtag": "string",
+              "label": "string"
+            }
+          ]
+        },
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        ));
+    print(response.data);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,14 +135,16 @@ class DescriptionScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () => {
+                onPressed: () async => {
                       if (_formKey.currentState!.validate())
                         {
                           GetStorage().write("legend", legendxController?.text),
                           GetStorage().write("hashtag", hashtagController.text),
                         },
                       print(GetStorage().getValues()),
-                      Share.share('check out my website https://example.com'),
+                      // Share.share('check out my website https://example.com'),
+                      print("posting data .................."),
+                      await postData().then((value) => print(value))
                     },
                 child: Center(
                   child: Row(children: const [

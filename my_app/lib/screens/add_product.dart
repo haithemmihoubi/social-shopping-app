@@ -185,7 +185,7 @@ class AddProduct extends StatelessWidget {
                 ),
                 onPressed: () {
                   Get.to(
-                        ()=>  const DescriptionScreen(),
+                        ()=>   DescriptionScreen(),
                     arguments: {
                       'title': 'product Add Form',
                     },
