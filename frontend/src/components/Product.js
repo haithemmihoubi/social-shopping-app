@@ -62,7 +62,7 @@ export default function Product({product}) {
             scale: .95
           }}
           >
-            <a href={product.productLink}>Voir Produit</a>
+            <a rel="noopener noreferrer" target="_blank" href={product.productLink}>Voir Produit</a>
           </motion.button>
         </div>
       </motion.div>
