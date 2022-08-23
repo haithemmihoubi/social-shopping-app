@@ -18,170 +18,64 @@ class AddProduct extends StatefulWidget {
 class _AddProductState extends State<AddProduct> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
-  final String? videoLink = Get.arguments[0];
+  late  String videoLink = Get.arguments[0];
 
+final String? imageLink = Get.arguments[0]['imageLink'];
+  List<Widget> listProducts = [];
+
+  void addProduct(imageLink) {
+    listProducts.add(
+      Card(
+          margin: const EdgeInsets.all(8),
+          elevation: 20,
+          borderOnForeground: true,
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: const BorderSide(
+              color: Colors.white24,
+              width: 4,
+              style: BorderStyle.solid,
+            ),
+          ),
+          shadowColor: Colors.white12,
+          child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Card(
+                color: Colors.white,
+                shadowColor: Colors.white,
+                elevation: 2,
+                borderOnForeground: true,
+                child: Image.network(
+                  imageLink,
+                  fit: BoxFit.cover,
+                ),
+              ))),
+    );
+  }
   @override
   void initState() {
     super.initState();
-
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
+    listProducts.clear();
+    videoLink = GetStorage().read('videoLink');
     _controller = VideoPlayerController.network(
-      videoLink!,
+      videoLink,
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
+
   }
 
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
     _controller.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     ScrollController scrollController = ScrollController();
-    List<Widget> listProducts = [
-      Card(
-          margin: const EdgeInsets.all(8),
-          elevation: 20,
-          borderOnForeground: true,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: const BorderSide(
-              color: Colors.white24,
-              width: 4,
-              style: BorderStyle.solid,
-            ),
-          ),
-          shadowColor: Colors.white12,
-          child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Card(
-                color: Colors.white,
-                shadowColor: Colors.white,
-                elevation: 2,
-                borderOnForeground: true,
-                child: Image.asset(
-                  'assets/images/lipstick.png',
-                  fit: BoxFit.cover,
-                ),
-              ))),
-      /*Card(
-          margin: const EdgeInsets.all(8),
-          elevation: 20,
-          borderOnForeground: true,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: const BorderSide(
-              color: Colors.white24,
-              width: 4,
-              style: BorderStyle.solid,
-            ),
-          ),
-          shadowColor: Colors.white12,
-          child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Card(
-                color: Colors.white,
-                shadowColor: Colors.white,
-                elevation: 2,
-                borderOnForeground: true,
-                child: Image.asset(
-                  "assets/images/lipstick.png",
-                  width: 80,
-                  height: 100,
-                ),
-              ))),
-      Card(
-          margin: const EdgeInsets.all(8),
-          elevation: 20,
-          borderOnForeground: true,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: const BorderSide(
-              color: Colors.white24,
-              width: 4,
-              style: BorderStyle.solid,
-            ),
-          ),
-          shadowColor: Colors.white12,
-          child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Card(
-                color: Colors.white,
-                shadowColor: Colors.white,
-                elevation: 2,
-                borderOnForeground: true,
-                child: Image.asset(
-                  "assets/images/lipstick.png",
-                  width: 80,
-                  height: 100,
-                ),
-              ))),
-      Card(
-          margin: const EdgeInsets.all(8),
-          elevation: 20,
-          borderOnForeground: true,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: const BorderSide(
-              color: Colors.white24,
-              width: 4,
-              style: BorderStyle.solid,
-            ),
-          ),
-          shadowColor: Colors.white12,
-          child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Card(
-                color: Colors.white,
-                shadowColor: Colors.white,
-                elevation: 2,
-                borderOnForeground: true,
-                child: Image.asset(
-                  "assets/images/lipstick.png",
-                  width: 80,
-                  height: 100,
-                ),
-              ))),
-      Card(
-          margin: const EdgeInsets.all(8),
-          elevation: 20,
-          borderOnForeground: true,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-            side: const BorderSide(
-              color: Colors.white24,
-              width: 4,
-              style: BorderStyle.solid,
-            ),
-          ),
-          shadowColor: Colors.white12,
-          child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Card(
-                color: Colors.white,
-                shadowColor: Colors.white,
-                elevation: 2,
-                borderOnForeground: true,
-                child: Image.asset(
-                  "assets/images/lipstick.png",
-                  width: 80,
-                  height: 100,
-                ),
-              ))),*/
-      //card
-    ];
+
 
     @override
     void dispose() {
@@ -296,13 +190,13 @@ class _AddProductState extends State<AddProduct> {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       controller: scrollController,
-                      children: listProducts
+                      children:listProducts.isNotEmpty? listProducts
                           .map((product) =>
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10),
                             child: product,
                           ))
-                          .toList(),
+                          .toList():[],
                     ),
                   ),
                 ),
@@ -320,13 +214,7 @@ class _AddProductState extends State<AddProduct> {
                       onPressed: () =>
                       {
                         Get.to(
-                              () => ProductAddForm(),
-                          arguments: {
-                            'title': 'Add Video',
-                          },
-                          transition: Transition.rightToLeftWithFade,
-                          curve: Curves.easeInOut,
-                          duration: const Duration(milliseconds: 500),
+                            ProductAddForm()
                         )
                       },
                       child: Row(

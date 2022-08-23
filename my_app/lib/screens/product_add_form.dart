@@ -6,18 +6,65 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_app/screens/add_product.dart';
 
-class ProductAddForm extends StatelessWidget {
+class ProductAddForm extends StatefulWidget {
+  @override
+  State<ProductAddForm> createState() => _ProductAddFormState();
+}
+
+class _ProductAddFormState extends State<ProductAddForm> {
   TextEditingController? marqueController = TextEditingController();
+
   TextEditingController? nomController = TextEditingController();
+
   TextEditingController? prixController = TextEditingController();
+
   TextEditingController? linkController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   var result;
+  UploadTask? uploadTask;
 
+  Widget buildProgress() => StreamBuilder<TaskSnapshot>(
+      stream: uploadTask?.snapshotEvents,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final data = snapshot.data!;
+          double progress = (data.bytesTransferred) / (data.totalBytes);
+          return Stack(children: [
+            if (data.bytesTransferred != data.totalBytes)
+              Lottie.asset(
+                "assets/7877-uploading-to-cloud.json",
+                width: 500,
+                height: 500,
+              ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: Center(
+                child: Text("${(progress * 100).toStringAsFixed(0)}%",
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500)),
+              ),
+            ) ,
 
+          ]);
+        }
+          return Center(
+            child:   Text(
+              "upload your photo",
+              style: TextStyle(
+                  color: Colors.pinkAccent,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+          );
+
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +158,8 @@ class ProductAddForm extends StatelessWidget {
                                         if (_formKey.currentState!.validate())
                                           {
                                             GetStorage().write(
+                                                "imageLink", urlDownload),
+                                            GetStorage().write(
                                                 "mark", marqueController?.text),
                                             GetStorage().write(
                                                 "name", nomController?.text),
@@ -119,18 +168,16 @@ class ProductAddForm extends StatelessWidget {
                                             print(
                                               GetStorage().getValues(),
                                             ),
-                                             Get.to(()=>  AddProduct())
+
+                                            Get.to(
+                                              AddProduct(),
+                                              arguments: [
+                                                'imageLink': 'urlDownload'
+                                              ],
+                                            ),
+
                                           }
-                                        /*Get.to(
-                                           ProductAddForm(),
-                                          arguments: {
-                                            'title': 'product Add Form',
-                                          },
-                                          transition: Transition.zoom,
-                                          curve: Curves.easeInOut,
-                                          duration:
-                                              const Duration(milliseconds: 500),
-                                        )*/
+
                                       },
                                   child: Center(
                                     child: Row(children: const [
@@ -154,8 +201,7 @@ class ProductAddForm extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async => {
-                  result =
-                  await FilePicker.platform.pickFiles(),
+                  result = await FilePicker.platform.pickFiles(),
                   pickedFile = result?.files.first,
                   file = File(pickedFile!.path!),
 // Create a storage reference from our app
@@ -163,13 +209,17 @@ class ProductAddForm extends StatelessWidget {
                       .ref()
                       .child('images/${pickedFile!.name}'),
                   videoRef = storageRef.putFile(file),
+                  setState(() {
+                    uploadTask = storageRef.putFile(file);
+                  }),
                   snapshot = await videoRef.whenComplete(() {}),
-                  urlDownload =
-                  await snapshot.ref.getDownloadURL(),
-                  print("url $urlDownload"),
-                  await GetStorage()
-                      .write("imageLink", urlDownload),
 
+                  urlDownload = await snapshot.ref.getDownloadURL(),
+                  print("url $urlDownload"),
+                  await GetStorage().write("imageLink", urlDownload),
+                  setState(() {
+                    uploadTask = null;
+                  }),
                 },
                 child: Container(
                   width: Get.width * 0.55,
@@ -189,7 +239,7 @@ class ProductAddForm extends StatelessWidget {
                         ),
                       ),
                       shadowColor: Colors.white12,
-                      child: const Padding(
+                      child:  Padding(
                           padding: EdgeInsets.all(10),
                           child: Card(
                             color: Colors.white,
@@ -197,7 +247,7 @@ class ProductAddForm extends StatelessWidget {
                             elevation: 2,
                             borderOnForeground: true,
                             child: Center(
-                              child: Text('No image selected.'),
+                              child: buildProgress() ,
                             ),
                             /*logoBase64==null? Image.asset(
                               "assets/images/lipstick.png",
