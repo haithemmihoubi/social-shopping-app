@@ -203,7 +203,7 @@ class _ProductAddFormState extends State<ProductAddForm> {
                   storageRef = FirebaseStorage.instance
                       .ref()
                       .child('images/${pickedFile!.name}'),
-                  videoRef = storageRef.putFile(file),
+                  videoRef = await storageRef.putFile(file),
                   setState(() {
                     uploadTask = storageRef.putFile(file);
                   }),

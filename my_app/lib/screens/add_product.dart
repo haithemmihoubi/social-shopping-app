@@ -20,8 +20,33 @@ class _AddProductState extends State<AddProduct> {
   late Future<void> _initializeVideoPlayerFuture;
   late  String videoLink = Get.arguments[0];
 
-final String? imageLink = Get.arguments[0]['imageLink'];
-  List<Widget> listProducts = [];
+
+  List<Widget> listProducts = [   Card(
+      margin: const EdgeInsets.all(8),
+      elevation: 20,
+      borderOnForeground: true,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: const BorderSide(
+          color: Colors.white24,
+          width: 4,
+          style: BorderStyle.solid,
+        ),
+      ),
+      shadowColor: Colors.white12,
+      child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Card(
+            color: Colors.white,
+            shadowColor: Colors.white,
+            elevation: 2,
+            borderOnForeground: true,
+            child: Image.asset(
+              'assets/images/lipstick.png',
+              fit: BoxFit.cover,
+            ),
+          ))),];
 
   void addProduct(imageLink) {
     listProducts.add(
@@ -46,8 +71,8 @@ final String? imageLink = Get.arguments[0]['imageLink'];
                 shadowColor: Colors.white,
                 elevation: 2,
                 borderOnForeground: true,
-                child: Image.network(
-                  imageLink,
+                child: Image.asset(
+                  'assets/images/lipstick.png',
                   fit: BoxFit.cover,
                 ),
               ))),
@@ -56,7 +81,7 @@ final String? imageLink = Get.arguments[0]['imageLink'];
   @override
   void initState() {
     super.initState();
-    listProducts.clear();
+ /*   listProducts.clear();*/
     videoLink = GetStorage().read('videoLink');
     _controller = VideoPlayerController.network(
       videoLink,
@@ -66,11 +91,7 @@ final String? imageLink = Get.arguments[0]['imageLink'];
 
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
