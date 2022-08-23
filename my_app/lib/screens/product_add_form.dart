@@ -50,20 +50,18 @@ class _ProductAddFormState extends State<ProductAddForm> {
                         fontSize: 30,
                         fontWeight: FontWeight.w500)),
               ),
-            ) ,
-
+            ),
           ]);
         }
-          return Center(
-            child:   Text(
-              "upload your photo",
-              style: TextStyle(
-                  color: Colors.pinkAccent,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
-            ),
-          );
-
+        return Center(
+          child: Text(
+            "upload your photo",
+            style: TextStyle(
+                color: Colors.pinkAccent,
+                fontSize: 25,
+                fontWeight: FontWeight.bold),
+          ),
+        );
       });
 
   @override
@@ -168,16 +166,13 @@ class _ProductAddFormState extends State<ProductAddForm> {
                                             print(
                                               GetStorage().getValues(),
                                             ),
-
                                             Get.to(
                                               AddProduct(),
                                               arguments: [
-                                                'imageLink': 'urlDownload'
+                                                {'imageLink': 'urlDownload'}
                                               ],
                                             ),
-
                                           }
-
                                       },
                                   child: Center(
                                     child: Row(children: const [
@@ -239,7 +234,7 @@ class _ProductAddFormState extends State<ProductAddForm> {
                         ),
                       ),
                       shadowColor: Colors.white12,
-                      child:  Padding(
+                      child: Padding(
                           padding: EdgeInsets.all(10),
                           child: Card(
                             color: Colors.white,
@@ -247,7 +242,7 @@ class _ProductAddFormState extends State<ProductAddForm> {
                             elevation: 2,
                             borderOnForeground: true,
                             child: Center(
-                              child: buildProgress() ,
+                              child: buildProgress(),
                             ),
                             /*logoBase64==null? Image.asset(
                               "assets/images/lipstick.png",
