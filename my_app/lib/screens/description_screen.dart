@@ -147,8 +147,7 @@ class DescriptionScreen extends StatelessWidget {
                         print(GetStorage().getValues()),
                         print("posting data .................."),
                         data = await postData(),
-                    int id= await data['video']['id'],
-                        await Share.share("https://shop-production-3194.up.railway.app/video/${data['video']['id']}"),
+                        await Share.share("https://shop-production-3194.up.railway.app/${data['video']}"),
                       },
                   child: Center(
                     child: Row(children: const [
