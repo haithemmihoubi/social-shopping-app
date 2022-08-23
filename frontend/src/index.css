@@ -4,4 +4,5 @@
 
 body {
   font-family: sans-serif;
+  background: linear-gradient(90deg, rgba(255,37,51,1) 0%, rgba(255,54,129,1) 100%);
 }

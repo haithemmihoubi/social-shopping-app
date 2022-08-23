@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
-export default function Product({ n, delay }) {
+export default function Product({product}) {
 
   return (
     <AnimatePresence>
@@ -20,7 +20,6 @@ export default function Product({ n, delay }) {
         }}
         transition={{
           duration: .7,
-          delay: delay,
           type: 'spring'
         }}
         className="bg-white relative rounded-2xl shadow-xl grid text-white"
@@ -35,18 +34,18 @@ export default function Product({ n, delay }) {
 
         <div className='h-full p-4'>
           <motion.div 
-          className='rounded-2xl text-black bg-white aspect-square w-full flex justify-center items-center'
+          className='rounded-2xl p-2 text-black bg-white aspect-square w-full'
           whileHover={{
             scale: 1.1,
             cursor: 'default'
           }}
           >
-            <img alt='product' src='#' />
+            <img alt={product.image} src={product.image} />
           </motion.div>
         </div>
         <div className='h-full flex flex-col justify-center p-4'>
-          <h3 className='font-bold pb-4'>Product {n}</h3>
-          <p className='text-sm '>Product description description description</p>
+          <h3 className='font-bold pb-4'>{product.mark}</h3>
+          <p className='text-sm '>{product.productName}</p>
         </div>
         <div className='h-full flex justify-center items-center'>
           <motion.button
@@ -63,7 +62,7 @@ export default function Product({ n, delay }) {
             scale: .95
           }}
           >
-            Voir Produit
+            <a href={product.productLink}>Voir Produit</a>
           </motion.button>
         </div>
       </motion.div>

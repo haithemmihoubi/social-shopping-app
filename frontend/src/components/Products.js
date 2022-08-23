@@ -17,6 +17,7 @@ export default function Products({products}) {
         }}>
         <motion.h2
           className='text-white text-2xl underline tracking-wider font decoration-white decoration-from-font underline-offset-3 cursor-default select-none'
+          
           initial={{
             scale: 0,
             opacity: 0,

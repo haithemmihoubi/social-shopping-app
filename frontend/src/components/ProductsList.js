@@ -16,7 +16,7 @@ export default function ProductsList({products}) {
   return (
     <motion.div
       ref={carousel}
-      className='overflow-hidden'
+      className='overflow-hidden h-full'
       style={{
         paddingLeft: '250px',
         marginLeft: '-250px',
@@ -41,8 +41,8 @@ export default function ProductsList({products}) {
           cursor: 'grab'
         }}
       >
-
-        {products && products.map(item => item)}
+        {console.log(products)}
+        {products && products.map(product =>  <Product product={product}/>)}
       </motion.div>
     </motion.div>
   );
