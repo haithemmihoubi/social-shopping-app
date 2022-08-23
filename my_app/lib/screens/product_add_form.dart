@@ -119,7 +119,7 @@ class ProductAddForm extends StatelessWidget {
                                             print(
                                               GetStorage().getValues(),
                                             ),
-                                             Get.to(()=> const AddProduct())
+                                             Get.to(()=>  AddProduct())
                                           }
                                         /*Get.to(
                                            ProductAddForm(),

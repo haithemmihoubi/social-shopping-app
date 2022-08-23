@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,15 +11,15 @@ class DescriptionScreen extends StatelessWidget {
     final response = await dio.post(
         'https://shop-production-3194.up.railway.app/video/upload',
         data: {
-          'videoLink': "flutter",
+          'videoLink': GetStorage().read('videoLink'),
           'products': [
             {
-              "image": "flutter",
-              "productName": "flutter",
-              "productLink": "string",
-              "mark": "string",
-              "hashtag": "string",
-              "label": "string"
+              "image": GetStorage().read('imageLink'),
+              "productName": GetStorage().read('name'),
+              "productLink": GetStorage().read('link'),
+              "mark": GetStorage().read('mark'),
+              "hashtag": GetStorage().read('hashtag'),
+              "label": GetStorage().read('legend'),
             }
           ]
         },
@@ -30,6 +29,7 @@ class DescriptionScreen extends StatelessWidget {
           },
         ));
     print(response.data);
+    return response.data;
   }
 
   @override
@@ -37,6 +37,7 @@ class DescriptionScreen extends StatelessWidget {
     TextEditingController? legendxController = TextEditingController();
     TextEditingController? hashtagController = TextEditingController();
     final _formKey = GlobalKey<FormState>();
+    var data;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -138,13 +139,14 @@ class DescriptionScreen extends StatelessWidget {
                 onPressed: () async => {
                       if (_formKey.currentState!.validate())
                         {
-                          GetStorage().write("legend", legendxController?.text),
+                          GetStorage().write("legend", legendxController.text),
                           GetStorage().write("hashtag", hashtagController.text),
                         },
                       print(GetStorage().getValues()),
-                      // Share.share('check out my website https://example.com'),
                       print("posting data .................."),
-                      await postData().then((value) => print(value))
+                      data = await postData(),
+                      await Share.share(
+                          'https://shop-production-3194.up.railway.app/video/${data['video']['id']}'),
                     },
                 child: Center(
                   child: Row(children: const [
