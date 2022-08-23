@@ -6,7 +6,8 @@ import NoMatch from './components/NoMatch';
 function App() {
   return (
     <Routes>
-      <Route path="/post/:id" element={<Main />} />
+      <Route path="/:id" element={<Main />} />
+      <Route path="" element={<Main />} />
       <Route path="*" element={<NoMatch />} />
     </Routes>
   );
