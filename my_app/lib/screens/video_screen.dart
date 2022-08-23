@@ -48,7 +48,7 @@ class VideoScreen extends StatelessWidget {
                   ),
                   onPressed: () => {
                         Get.to(
-                          const AddVideoScreen(),
+                           AddVideoScreen(),
                           arguments: {
                             'title': 'Add Video',
                           },
