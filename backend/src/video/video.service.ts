@@ -21,7 +21,7 @@ export class VideoService {
   }
 
   findOne(id: number) {
-    return this.videoRepository.findOneBy({ id });
+    return this.videoRepository.findOneById(id);
   }
 
   update(id: number, updateVideoDto: UpdateVideoDto) {

@@ -47,6 +47,17 @@ export class VideoController {
     };
   }
 
+  @Get(':id')
+  async getDataById(@Param('id') id: number) {
+    const video = await this.videoService.findOne(+id);
+    const products = await this.productService.findAllByVideo(+id);
+    return {
+        video,
+        products,
+
+    };
+  }
+
   @Post()
   create(@Body() createVideoDto: CreateVideoDto) {
     return this.videoService.create(createVideoDto);

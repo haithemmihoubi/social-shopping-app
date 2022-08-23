@@ -32,4 +32,8 @@ export class ProductService {
   remove(id: number) {
     return `This action removes a #${id} product`;
   }
+
+  findAllByVideo(idVideo: number) {
+    return this.productRepository.find({ where: { video: { id: idVideo } } });
+  }
 }
