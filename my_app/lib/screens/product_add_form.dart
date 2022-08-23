@@ -53,7 +53,7 @@ class _ProductAddFormState extends State<ProductAddForm> {
             ),
           ]);
         }
-        return Center(
+        return const Center(
           child: Text(
             "upload your photo",
             style: TextStyle(
@@ -155,22 +155,22 @@ class _ProductAddFormState extends State<ProductAddForm> {
                                   onPressed: () => {
                                         if (_formKey.currentState!.validate())
                                           {
-                                            GetStorage().write(
-                                                "imageLink", urlDownload),
+
                                             GetStorage().write(
                                                 "mark", marqueController?.text),
                                             GetStorage().write(
                                                 "name", nomController?.text),
                                             GetStorage().write(
                                                 "link", linkController?.text),
+                                            GetStorage().write(
+                                                "imageLink", urlDownload),
+
                                             print(
                                               GetStorage().getValues(),
                                             ),
+
                                             Get.to(
                                               AddProduct(),
-                                              arguments: [
-                                                {'imageLink': 'urlDownload'}
-                                              ],
                                             ),
                                           }
                                       },

@@ -13,7 +13,7 @@ import { UpdateVideoDto } from './dto/update-video.dto';
 import { ProductService } from '../product/product.service';
 import { Product } from '../product/entities/product.entity';
 import { Video } from './entities/video.entity';
-import { json } from 'express';
+
 import { ApiTags } from '@nestjs/swagger';
 @ApiTags('video')
 @Controller('video')
@@ -42,7 +42,7 @@ export class VideoController {
       this.productService.create(newProduct);
     });
     return {
-      video: newVideo.videoLink,
+      video: newVideo.id,
       products: productList,
     };
   }
@@ -52,7 +52,7 @@ export class VideoController {
     const video = await this.videoService.findOne(+id);
     const products = await this.productService.findAllByVideo(+id);
     return {
-        video,
+      video,
         products,
 
     };

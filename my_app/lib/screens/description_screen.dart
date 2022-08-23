@@ -20,7 +20,7 @@ class DescriptionScreen extends StatelessWidget {
               "mark": GetStorage().read('mark'),
               "hashtag": GetStorage().read('hashtag'),
               "label": GetStorage().read('legend'),
-            }
+            },
           ]
         },
         options: Options(
@@ -147,8 +147,8 @@ class DescriptionScreen extends StatelessWidget {
                         print(GetStorage().getValues()),
                         print("posting data .................."),
                         data = await postData(),
-                        await Share.share(
-                            'https://shop-production-3194.up.railway.app/video/${data['video']['id']}'),
+                    int id= await data['video']['id'],
+                        await Share.share("https://shop-production-3194.up.railway.app/video/${data['video']['id']}"),
                       },
                   child: Center(
                     child: Row(children: const [
