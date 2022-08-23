@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import './Video.css';
 
-export default function Video() {
+export default function Video(props) {
 
   const [play, setPlay] = useState(false);
   const [playDisplay, setPlayDisplay] = useState(true);
@@ -40,12 +40,13 @@ export default function Video() {
           playing={play}
           volume={volume}
           className="react-player shadow-xl"
-          url="https://v16-webapp.tiktok.com/6f0912fa156dcfb4c0fd0876375c5aff/63032c42/video/tos/useast2a/tos-useast2a-pve-0068/b296ddea27334a84a075457d4f23dba3/?a=1988&ch=0&cr=0&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C0&cv=1&br=1364&bt=682&cs=0&ds=3&ft=eXd.6H5_Myq8ZSdwVhe2NbVeyl7Gb&mime_type=video_mp4&qs=0&rc=ZTw6O2VkOmhmZTQ2OTk6OEBpanFqamQ6ZjozPDMzNzczM0AyNF4tYV4uXi8xL2JjMV9eYSNlcl8tcjQwY2FgLS1kMTZzcw%3D%3D&l=2022082201111901021713503808780112&btag=80000"
+          url={props.url}
           height='100vh'
           width='auto'
           pip={false}
           style={{
-            background: 'rgba(0,0,0,0.1)'
+            background: 'rgba(0,0,0,0.1)',
+            minWidth: '20rem'
           }}
           loop
         ></ReactPlayer>

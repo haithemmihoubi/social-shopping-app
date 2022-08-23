@@ -4,7 +4,7 @@ export default function ProductsFooter() {
 
   return (
     <>
-      <AnimatedButton onClick={() => {}}>
+      {/* <AnimatedButton onClick={() => {}}>
         <AnimatePresence>
           <motion.div
             className='arrow-down rounded-full w-16 aspect-square shadow-xl p-3'
@@ -30,7 +30,7 @@ export default function ProductsFooter() {
             </svg>
           </motion.div>
         </AnimatePresence>
-      </AnimatedButton>
+      </AnimatedButton> */}
     </>
   );
 }
