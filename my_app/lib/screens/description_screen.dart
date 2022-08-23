@@ -14,7 +14,7 @@ class DescriptionScreen extends StatelessWidget {
           'videoLink': GetStorage().read('videoLink'),
           'products': [
             {
-              "image": GetStorage().read('imageLink'),
+              "image": 'https://ae01.alicdn.com/kf/HTB1cmY2QNTpK1RjSZFKq6y2wXXaz/Hot-2-In-1-Liquid-Lip-Gloss-Matte-Lipsick-Waterproof-Long-Lasting-Makeup-Cosmetics-Nude-Color.jpg',
               "productName": GetStorage().read('name'),
               "productLink": GetStorage().read('link'),
               "mark": GetStorage().read('mark'),
@@ -53,7 +53,7 @@ class DescriptionScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Container(
@@ -141,13 +141,16 @@ class DescriptionScreen extends StatelessWidget {
                   onPressed: () async => {
                         if (_formKey.currentState!.validate())
                           {
-                            GetStorage().write("legend", legendxController.text),
-                            GetStorage().write("hashtag", hashtagController.text),
+                            GetStorage()
+                                .write("legend", legendxController.text),
+                            GetStorage()
+                                .write("hashtag", hashtagController.text),
                           },
                         print(GetStorage().getValues()),
                         print("posting data .................."),
                         data = await postData(),
-                        await Share.share("https://shop-production-3194.up.railway.app/${data['video']}"),
+                        await Share.share(
+                            "https://social-shopping-app.vercel.app/post/${data['video']}"),
                       },
                   child: Center(
                     child: Row(children: const [
@@ -157,8 +160,8 @@ class DescriptionScreen extends StatelessWidget {
                       ),
                       Text(
                         "Publier",
-                        style:
-                            TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20),
                       ),
                     ]),
                   )),

@@ -24,7 +24,7 @@ class _ProductAddFormState extends State<ProductAddForm> {
   TextEditingController? linkController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
+ var     uploaded=false;
   var result;
   UploadTask? uploadTask;
 
@@ -152,7 +152,7 @@ class _ProductAddFormState extends State<ProductAddForm> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
-                                  onPressed: () => {
+                                  onPressed: () async => {
                                         if (_formKey.currentState!.validate())
                                           {
 
@@ -169,8 +169,8 @@ class _ProductAddFormState extends State<ProductAddForm> {
                                               GetStorage().getValues(),
                                             ),
 
-                                            Get.to(
-                                              AddProduct(),
+                                           await  Get.to(
+                            ()=>   AddProduct(),
                                             ),
                                           }
                                       },
@@ -199,22 +199,25 @@ class _ProductAddFormState extends State<ProductAddForm> {
                   result = await FilePicker.platform.pickFiles(),
                   pickedFile = result?.files.first,
                   file = File(pickedFile!.path!),
-// Create a storage reference from our app
                   storageRef = FirebaseStorage.instance
                       .ref()
                       .child('images/${pickedFile!.name}'),
-                  videoRef = await storageRef.putFile(file),
+
+                  videoRef = storageRef.putFile(file),
                   setState(() {
                     uploadTask = storageRef.putFile(file);
                   }),
-                  snapshot = await videoRef.whenComplete(() {}),
-
-                  urlDownload = await snapshot.ref.getDownloadURL(),
-                  print("url $urlDownload"),
-                  await GetStorage().write("imageLink", urlDownload),
-                  setState(() {
-                    uploadTask = null;
+                  snapshot =
+                  await videoRef.whenComplete((value) {
                   }),
+
+                  urlDownload =
+                  await snapshot.ref.getDownloadURL(),
+                  setState(() async {
+                    uploadTask = null;
+                     uploaded = true;
+                  }),
+                  print("url $urlDownload"),
                 },
                 child: Container(
                   width: Get.width * 0.55,

@@ -53,8 +53,7 @@ export class VideoController {
     const products = await this.productService.findAllByVideo(+id);
     return {
       video,
-        products,
-
+      products,
     };
   }
 

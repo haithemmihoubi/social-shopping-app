@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    cors: { credentials: true, origin: 'http://localhost:3000' },
+    cors: { credentials: true, origin: 'https://social-shopping-app.vercel.app' },
   });
   const config = new DocumentBuilder()
     .setTitle(' Social shopp app api')
