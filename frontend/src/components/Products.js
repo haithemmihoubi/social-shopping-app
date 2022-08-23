@@ -3,7 +3,7 @@ import ProductsFooter from './ProductsFooter';
 
 import { motion } from 'framer-motion';
 
-export default function Products() {
+export default function Products({products}) {
 
   return (
     <div className='h-full flex flex-col pr-6' style={{
@@ -36,7 +36,7 @@ export default function Products() {
           LISTE DE PRODUITS
         </motion.h2>
       </div>
-      <ProductsList />
+      <ProductsList products={products} />
       <div
         className="flex justify-end gap-10 pr-32 items-start mt-8"
         style={{

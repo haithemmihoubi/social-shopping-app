@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 import Product from './Product';
 
-export default function ProductsList() {
+export default function ProductsList({products}) {
 
-  const [productList] = useState([<Product n="1" delay="0.4" />, <Product n="2" delay=".7" />, <Product n="3" delay="1" />, <Product n="4" delay="1.3" />, <Product n="5" delay="1.6" />, <Product n="6" delay="1.9" />, <Product n="7" delay="2.2" />])
+  // const [productList] = useState([<Product n="1" delay="0.4" />, <Product n="2" delay=".7" />, <Product n="3" delay="1" />, <Product n="4" delay="1.3" />, <Product n="5" delay="1.6" />, <Product n="6" delay="1.9" />, <Product n="7" delay="2.2" />])
   const [height, setHeight] = useState();
   const carousel = useRef();
 
@@ -42,7 +42,7 @@ export default function ProductsList() {
         }}
       >
 
-        {productList.map(item => item)}
+        {products && products.map(item => item)}
       </motion.div>
     </motion.div>
   );
