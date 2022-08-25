@@ -10,7 +10,7 @@ export default function Main() {
 
   const { id } = useParams();
 
-  const { isLoading, isError, error, data } = useQuery('video', () =>
+  const { isLoading, isError, data } = useQuery('video', () =>
     axios.get('https://shop-production-3194.up.railway.app/video/' + id)
   );
 
@@ -24,13 +24,12 @@ export default function Main() {
     return (
       <>
         <h1>Error</h1>
-        <p>{console.log(error)}</p>
       </>
     )
   }
 
   return (
-    <main>{console.log(data['data'].products)}
+    <main>
       <div
         className="h-screen w-screen flex bg-black overflow-hidden"
         style={{

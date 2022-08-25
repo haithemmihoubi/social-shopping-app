@@ -41,7 +41,6 @@ export default function ProductsList({products}) {
           cursor: 'grab'
         }}
       >
-        {console.log(products)}
         {products && products.map(product =>  <Product product={product}/>)}
       </motion.div>
     </motion.div>
