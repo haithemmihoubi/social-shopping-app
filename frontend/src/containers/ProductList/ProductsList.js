@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-import Product from './Product';
+import {Product} from "../../components";
 
 export default function ProductsList({products}) {
 

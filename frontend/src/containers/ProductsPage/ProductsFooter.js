@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProductsFooter() {
 
@@ -35,23 +35,23 @@ export default function ProductsFooter() {
   );
 }
 
-const AnimatedButton = props => {
-
-  return (
-    <motion.button
-      onClick={props.onClick}
-      whileHover={{
-        scale: .95
-      }}
-      whileTap={{
-        scale: .89,
-      }}
-      drag
-      dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-    >
-      {props.children}
-    </motion.button>
-  );
-}
-
-const background = { background: '#f52f54' }
+// const AnimatedButton = props => {
+//
+//   return (
+//     <motion.button
+//       onClick={props.onClick}
+//       whileHover={{
+//         scale: .95
+//       }}
+//       whileTap={{
+//         scale: .89,
+//       }}
+//       drag
+//       dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
+//     >
+//       {props.children}
+//     </motion.button>
+//   );
+// }
+//
+// const background = { background: '#f52f54' }

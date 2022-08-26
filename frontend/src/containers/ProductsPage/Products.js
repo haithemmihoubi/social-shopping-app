@@ -1,4 +1,4 @@
-import ProductsList from './ProductsList';
+import {ProductsList} from '../index';
 import ProductsFooter from './ProductsFooter';
 
 import { motion } from 'framer-motion';

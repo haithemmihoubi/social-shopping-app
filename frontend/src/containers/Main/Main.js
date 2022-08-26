@@ -1,7 +1,5 @@
-import Video from './Video';
-import Products from './Products';
-import LoadingPage from './LoadingPage';
-import Error from './Error';
+import {Video, LoadingPage, Error} from '../../components';
+import Products from "../ProductsPage/Products";
 
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -14,6 +12,8 @@ export default function Main() {
   const { isLoading, isError, data } = useQuery('video', () =>
     axios.get('https://shop-production-3194.up.railway.app/video/' + id)
   );
+
+  // return <Error />;
 
   if (isLoading) {
     return (

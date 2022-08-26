@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Main from './components/Main';
-import NoMatch from './components/NoMatch';
-import Home from './components/Home';
+import {Main} from './containers';
+import {NoMatch, Home} from './components';
 
 function App() {
   return (
