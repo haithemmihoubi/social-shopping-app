@@ -1,6 +1,7 @@
 import Video from './Video';
 import Products from './Products';
 import LoadingPage from './LoadingPage';
+import Error from './Error';
 
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -23,7 +24,7 @@ export default function Main() {
   if (isError) {
     return (
       <>
-        <h1>Error</h1>
+        <Error />
       </>
     )
   }
