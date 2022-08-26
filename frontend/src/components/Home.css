@@ -1,1 +1,17 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.home__header-container span {
+    background: linear-gradient(90deg, rgba(189, 88, 107, 1) 0%, rgba(243, 60, 134, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    font-weight: bold;
+}
+
+.home__header-container span:nth-child(2) {
+    font-weight: normal;
+}
+
+.bg-gradient {
+    background: linear-gradient(90deg, rgba(189, 88, 107, 1) 0%, rgba(243, 60, 134, 1) 100%);
+}
