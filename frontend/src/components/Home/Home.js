@@ -37,7 +37,7 @@ export default function Home() {
           </motion.div>
           <motion.div
             initial={{rotate: -30, opacity: 0, scale: 0}}
-            animate={{rotate: 1, opacity: 1, scale: 1}}
+            animate={{rotate: 0, opacity: 1, scale: 1}}
             transition={{delay: .4}}
             className="px-10 my-16">
             <p className="tracking-wide tracking-wide leading-6 text-justify" style={{textAlign: 'justify'}}>
@@ -48,7 +48,7 @@ export default function Home() {
             </p>
           </motion.div>
           <motion.div
-            initial={{rotate: 1}}
+            initial={{rotate: 0}}
             className="pl-4 mt-4 flex gap-4 justify-center">
             <a href="https://github.com/haithemmihoubi/social-shopping-app/tree/main/my_app" rel="noreferrer noopener"
                target="_blank">
@@ -56,7 +56,7 @@ export default function Home() {
                 initial={{scale: 0, opacity: 0, y: 50}}
                 animate={{opacity: 1, y: 0, scale: .85}}
                 transition={{delay: .5}}
-                whileHover={{scale: .90}} whileTap={{scale: .80}}
+                // whileHover={{scale: .90}} whileTap={{scale: .80}}
                 className="bg-gradient shadow-md text-left flex mt-3 w-48 h-14 text-white rounded-xl items-center justify-center">
                 <div className="mr-3">
                   <svg viewBox="0 0 384 512" width="30">
@@ -75,7 +75,7 @@ export default function Home() {
                 initial={{scale: 0, opacity: 0, y: 50}}
                 animate={{opacity: 1, y: 0, scale: .85}}
                 transition={{delay: .5}}
-                whileHover={{scale: .90}} whileTap={{scale: .80}}
+                // whileHover={{scale: .90}} whileTap={{scale: .80}}
                 className="bg-gradient shadow-md text-left flex mt-3 w-48 h-14 bg-black text-white rounded-lg items-center justify-center">
                 <div className="mr-3">
                   <svg viewBox="30 336.7 120.9 129.2" width="30">
